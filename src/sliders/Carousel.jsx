@@ -3,9 +3,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   IoChevronBack,
   IoChevronForward,
-  IoPause,
-  IoPlay,
+   
 } from "react-icons/io5";
+import {  BsPause,
+  BsPlay ,} from "react-icons/bs";
 
 const slides = [
   {
@@ -102,7 +103,7 @@ const Carousel = () => {
   };
 
   return (
-    <section className="relative bg-black max-w-4xl mx-auto w-full h-screen overflow-hidden font-serif">
+    <section className="relative bg-black max-w-5xl mx-auto w-full h-screen overflow-hidden font-serif">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={active}
@@ -170,31 +171,31 @@ const Carousel = () => {
           {/* ⬅️ Prev */}
           <button
             onClick={() => paginate(-1)}
-            className="p-1  cursor-pointer border-2 border-white hover:bg-white/30 rounded-full transition"
+            className="p-2 rounded-full  cursor-pointer border border-white hover:bg-white/30   transition"
           >
-            <IoChevronBack className="text-white w-5 h-5" />
+            <IoChevronBack className="text-white w-4 h-4" />
           </button>
           <button
             onClick={() => setPaused((prev) => !prev)}
-            className="p-1 cursor-pointer   border-2 border-white hover:bg-white/30 rounded-full transition"
+            className="p-2 rounded-full cursor-pointer   border border-white hover:bg-white/30   transition"
           >
             {paused ? (
-              <IoPlay className="text-white w-5 h-5" />
+              <BsPlay  className="text-white w-4 h-4" />
             ) : (
-              <IoPause className="text-white w-5 h-5" />
+              <BsPause className="text-white w-4 h-4" />
             )}
           </button>
 
-          {/* ➡️ Next */}
+          {/* Next */}
           <button
             onClick={() => paginate(1)}
-            className="p-1 cursor-pointer  border-2 border-white hover:bg-white/30 rounded-full transition"
+            className="p-2 rounded-full cursor-pointer  border border-white hover:bg-white/30   transition"
           >
-            <IoChevronForward className="text-white w-5 h-5" />
+            <IoChevronForward className="text-white w-4 h-4" />
           </button>
 
           {/* Progress bar */}
-          <div className="h-1 w-28 bg-white/20 overflow-hidden rounded-full">
+          <div className="h-1 w-28 bg-white/20 overflow-hidden  ">
             <div
               className="h-full bg-white transition-all duration-500 ease-linear"
               style={{ width: `${((active + 1) / slides.length) * 100}%` }}

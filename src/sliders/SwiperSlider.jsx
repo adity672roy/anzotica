@@ -1,61 +1,69 @@
-
 const hotels = [
   {
     number: "01",
     name: "The Ritz-Carlton, Dubai",
     image:
       "https://images.unsplash.com/photo-1705346435684-a9de6cbb53dc?w=600&auto=format&fit=crop&q=60",
+    description:
+      "Luxury beach resort with skyline views and elegant Arabian design.",
   },
   {
     number: "02",
-    name: "Zadún, a Ritz-Carlton Reserve",
+    name: "Zadún, a Ritz-Carlton",
     image:
       "https://plus.unsplash.com/premium_photo-1718285549233-42414e1c16f9?w=600&auto=format&fit=crop&q=60",
+    description:
+      "Desert escape offering personalized service and immersive natural beauty.",
   },
   {
     number: "03",
     name: "The Ritz-Carlton, Jeddah",
     image:
       "https://images.unsplash.com/photo-1568812315803-7f6419ff8d3e?w=600&auto=format&fit=crop&q=60",
+    description:
+      "Palatial Red Sea hotel with regal interiors and historic charm.",
   },
   {
     number: "04",
-    name: "The Ritz-Carlton Hotel de la Paix, Geneva",
+    name: "The Ritz-Carlton, Geneva",
     image:
       "https://images.unsplash.com/photo-1686529481396-1bdd63c0a544?q=80&w=687&auto=format&fit=crop",
+    description:
+      "Lakeside landmark blending heritage architecture and contemporary Swiss elegance.",
   },
   {
     number: "05",
     name: "The Ritz-Carlton, Tokyo",
     image:
       "https://plus.unsplash.com/premium_photo-1718285549990-74ef9fb74946?w=600&auto=format&fit=crop&q=60",
+    description:
+      "Skyscraper luxury with panoramic city views and refined Japanese service.",
   },
   {
     number: "06",
     name: "The Ritz-Carlton, Bali",
     image:
       "https://plus.unsplash.com/premium_photo-1676049111274-3ec809c03516?w=600&auto=format&fit=crop&q=60",
+    description:
+      "Clifftop retreat featuring oceanfront villas and Balinese cultural experiences.",
   },
   {
     number: "07",
     name: "The Ritz-Carlton, Kyoto",
     image:
       "https://images.unsplash.com/photo-1610036615605-636de68a306e?w=600&auto=format&fit=crop&q=60",
+    description:
+      "Riverfront elegance combining Zen design and traditional Kyoto hospitality.",
   },
   {
     number: "08",
     name: "The Ritz-Carlton, Maldives",
     image:
       "https://images.unsplash.com/photo-1490761668535-35497054764d?w=600&auto=format&fit=crop&q=60",
+    description:
+      "Overwater villas offering secluded luxury amid turquoise island serenity.",
   },
-]; 
-
-
-
-
-
-
-
+];
 
 import { useRef, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -74,7 +82,7 @@ const SwiperSlider = () => {
 
   const totalSlides = hotels.length;
   const progressPercent = ((activeIndex + 1) / totalSlides) * 100;
- 
+
   useEffect(() => {
     if (
       swiperRef.current &&
@@ -91,15 +99,16 @@ const SwiperSlider = () => {
   }, []);
 
   return (
-    <section className="w-full py-16 px-4 bg-[#e8f1fa] overflow-hidden">
-      <Heading/>
+    <section className="w-full py-16 bg-blue-100 overflow-hidden">
+      <Heading />
       <Swiper
         className="cursor-grab"
         modules={[Navigation]}
         loop={true}
         centeredSlides={true}
-        spaceBetween={20}
+        spaceBetween={60}
         slidesPerView="auto"
+        speed={1000}
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
         }}
@@ -110,51 +119,53 @@ const SwiperSlider = () => {
           return (
             <SwiperSlide
               key={index}
-              className="!w-full md:!w-[50%] transition-all duration-300"
+              className={`relative ${
+                index % 2 === 0 ? "top-10" : "top-0"
+              } py-10 px-6 !w-full md:!w-[50%] transition-all duration-300`}
             >
               <motion.div
-                initial={{ scale: 0.9 }}
-                animate={{ scale: isActive ? 1 : 0.9 }}
-                transition={{ duration: 0.3 }}
-                className="relative flex items-center justify-center"
+                transition={{ duration: 2, ease: "linear" }}
+                className="  h-full flex items-center  "
               >
-                <div className="w-full h-[400px]">
+                <motion.div
+                  initial={{ x: [0,-50] }}
+                  animate={{ x: isActive ? 0 : 50 }}
+                  transition={{ duration: 1 }}
+                  className="w-full h-[400px]"
+                >
                   <img
                     src={hotel.image}
                     alt={hotel.name}
                     className="w-full h-full object-cover"
                   />
-                </div>
+                </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: isActive ? 1 : 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="absolute z-50 top-0 left-0 bg-black/50 shadow-lg h-full w-full"
+                  key={isActive ? activeIndex : index}
+                  initial={{ opacity: 0, x: -200 }}
+                  animate={{
+                    opacity: isActive ? 1 : 0,
+                    x: isActive ? 0 : -200,
+                  }}
+                  transition={{ duration: 0.6, ease: "linear" }}
+                  className={`absolute z-50 ${
+                    index % 2 === 0 ? "-top-0" : "bottom-0"
+                  } -right-16 max-w-sm border-2 border-zinc-900 shadow-lg p-2`}
                 >
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{
-                      opacity: isActive ? 1 : 0,
-                      y: isActive ? 0 : 30,
-                    }}
-                    transition={{ duration: 0.4 }}
-                    className="flex flex-col items-start justify-end text-white h-full gap-2 p-4 max-w-md mr-auto"
-                  >
-                    <p className="text-xs uppercase font-bold tracking-widest">
+                  <div className=" text-center  flex flex-col items-center justify-center text-black h-full bg-zinc-100 gap-2 py-6 px-6  max-w-md mr-auto">
+                    <p className="text-[10px] uppercase   tracking-widest">
                       Now Open
                     </p>
-                    <h3 className="text-2xl font-extrabold text-start">
+                    <h3 className="text-xl  font-serif w-full  ">
                       {hotel.name}
                     </h3>
-                    <p className="text-sm text-start leading-relaxed">
-                      Nestled in the heart of a stunning destination, this
-                      hotel blends local culture with modern luxury.
+                    <p className="text-sm  leading-relaxed">
+                      {hotel.description}
                     </p>
                     <button className="cursor-pointer font-semibold border-b-2 border-white transition">
                       Explore More
                     </button>
-                  </motion.div>
+                  </div>
                 </motion.div>
               </motion.div>
             </SwiperSlide>
@@ -198,4 +209,3 @@ const SwiperSlider = () => {
 };
 
 export default SwiperSlider;
-
