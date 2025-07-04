@@ -97,9 +97,9 @@ const HotelSlider =() =>{
   const progress = ((startIndex + 1) / hotels.length) * 100;
 
   return (
-    <section className="bg-black text-white">
-      <div className="w-full   overflow-x-hidden max-w-7xl mx-auto py-16 px-2">
-        <Heading />
+    <section className="bg-zinc-900 text-white">
+      <div className="w-full   overflow-x-hidden max-w-6xl mx-auto py-10 px-2">
+        <Heading subHeading={"Destinations"} heading={"Journey Farther"}  />
         <AnimatePresence mode="wait">
           <motion.div
             key={startIndex}
@@ -117,9 +117,9 @@ const HotelSlider =() =>{
                 key={i}
                 initial={{ y: 0 }}
                  animate={{
-                  y: i % 2 === 0 ? -20 : 20, // keep 2nd slide (index 1) at y: 0
+                  y: i % 2 === 0 ? -20 : 20,  
                 }}
-                transition={{ duration: 0.3, ease: "linear" }} // smooth and linear
+                transition={{ duration: 0.3, ease: "linear" }}  
                 className="w-[300px]  flex  items-center justify-center flex-col gap-4 border-r border-zinc-800 px-4 sm:px-6 md:px-8 lg:px-10 "
               >
                 <div className="text-5xl text-left w-full text-[#8B6A29] font-serif">
