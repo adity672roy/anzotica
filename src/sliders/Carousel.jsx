@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import {
+  IoChevronBack,
+  IoChevronForward,
+  IoPause,
+  IoPlay,
+} from "react-icons/io5";
 
 const slides = [
   {
@@ -26,9 +31,10 @@ const slides = [
   },
 ];
 
-const Carousel = ()=> {
+const Carousel = () => {
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [paused, setPaused] = useState(false);
   const timeoutRef = useRef(null);
 
   const thumbContainerRef = useRef(null);
@@ -65,9 +71,13 @@ const Carousel = ()=> {
   };
 
   useEffect(() => {
-    timeoutRef.current = setInterval(() => paginate(1), 4000);
-    return () => clearTimeout(timeoutRef.current);
-  }, [active]);
+    if (!paused) {
+      timeoutRef.current = setInterval(() => paginate(1), 4000);
+      return () => clearInterval(timeoutRef.current);
+    } else {
+      clearInterval(timeoutRef.current);
+    }
+  }, [active, paused]);
 
   const variants = {
     enter: (direction) => ({
@@ -131,8 +141,6 @@ const Carousel = ()=> {
         className="absolute bottom-14 left-1/2 md:left-auto md:right-4 -translate-x-1/2 md:translate-x-0 z-30 md:max-w-xs max-w-2xs w-full overflow-x-auto px-2 py-2  scrollbar-hide"
       >
         <div className="flex gap-4 items-end w-max">
-          
-
           <div className="flex gap-4 items-end w-max">
             {rotatedSlides.map((slide, i) => (
               <img
@@ -158,13 +166,23 @@ const Carousel = ()=> {
       </div>
 
       <div className="absolute bottom-4 right-4 left-1/2 md:left-auto md:right-4 -translate-x-1/2 md:translate-x-0 z-30   backdrop-blur-md py-1 px-4   w-fit">
-        <div className="flex items-center justify-between gap-4 min-w-[300px]">
+        <div className="flex items-center justify-between gap-2 max-w-[300px]">
           {/* ⬅️ Prev */}
           <button
             onClick={() => paginate(-1)}
             className="p-1  cursor-pointer border-2 border-white hover:bg-white/30 rounded-full transition"
           >
             <IoChevronBack className="text-white w-5 h-5" />
+          </button>
+          <button
+            onClick={() => setPaused((prev) => !prev)}
+            className="p-1 cursor-pointer   border-2 border-white hover:bg-white/30 rounded-full transition"
+          >
+            {paused ? (
+              <IoPlay className="text-white w-5 h-5" />
+            ) : (
+              <IoPause className="text-white w-5 h-5" />
+            )}
           </button>
 
           {/* ➡️ Next */}
@@ -176,7 +194,7 @@ const Carousel = ()=> {
           </button>
 
           {/* Progress bar */}
-          <div className="h-1 w-full bg-white/20 overflow-hidden rounded-full">
+          <div className="h-1 w-28 bg-white/20 overflow-hidden rounded-full">
             <div
               className="h-full bg-white transition-all duration-500 ease-linear"
               style={{ width: `${((active + 1) / slides.length) * 100}%` }}
@@ -191,5 +209,5 @@ const Carousel = ()=> {
       </div>
     </section>
   );
-}
-export default Carousel
+};
+export default Carousel;
