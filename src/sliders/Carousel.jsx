@@ -35,7 +35,7 @@ const slides = [
 const Carousel = () => {
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(true);
   const timeoutRef = useRef(null);
 
   const thumbContainerRef = useRef(null);
@@ -73,7 +73,7 @@ const Carousel = () => {
 
   useEffect(() => {
     if (!paused) {
-      timeoutRef.current = setInterval(() => paginate(1), 4000);
+      timeoutRef.current = setInterval(() => paginate(1), 3000);
       return () => clearInterval(timeoutRef.current);
     } else {
       clearInterval(timeoutRef.current);
