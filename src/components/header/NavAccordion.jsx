@@ -12,12 +12,12 @@ const NavAccordion = ({
   if (!section) return null;
 
   return (
-    <div className=" ">
+    <div className="w-full ">
      
       <div className="flex gap-2 px-2  bg-zinc-200 py-6 w-full items-center justify-between mb-4">
 
       <button
-        className="  flex cursor-pointer items-center justify-center gap-2 font-semibold  text-sm p-2"
+        className=" text-[#927c42] flex cursor-pointer items-center justify-center gap-2 font-semibold  text-sm p-2"
         onClick={() => {
           setActiveMobileSubsection(null);
           setActiveMobileSection(null);
@@ -52,7 +52,7 @@ const NavAccordion = ({
           <p className="text-sm uppercase font-semibold tracking-widest text-zinc-700">
             {section.right.title}
           </p>
-          <p className="text-zinc-700 font-serif mt-2 mb-4">
+          <p className="text-zinc-700 max-w-sm font-serif mt-2 mb-4">
             {section.right.text}
           </p>
           <a href="#" className="inline-block border-b-2 border-black font-medium">
