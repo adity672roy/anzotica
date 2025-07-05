@@ -125,7 +125,9 @@ const HotelSlider =() =>{
                 <div className="text-5xl text-left w-full text-[#8B6A29] font-serif">
                   {hotel.number}
                 </div>
-                <div className="overflow-hidden">
+                <div className="overflow-hidden relative "
+                >
+                  <div className="absolute top-0 left-0 h-full w-full"></div>
                   <img
                     src={hotel.image}
                     alt={hotel.name}
