@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Heading from "../heading/Heading";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import Heading from "../heading/Heading"; 
 import SliderNavigation from "./SliderNavigation";
 
 const hotels = [

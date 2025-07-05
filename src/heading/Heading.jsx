@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
 
-const Heading = ({ subHeading, heading, description, buttonText }) => {
+const Heading = ({  subHeading,
+  heading,
+  description,
+  buttonText,
+  borderColor = "white",
+  bgColor = "white", }) => {
   return (
     <section className="w-full sm:px-4 px-2 md:px-10 md:py-10 pt-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between gap-4">
@@ -33,7 +38,21 @@ const Heading = ({ subHeading, heading, description, buttonText }) => {
               </p>
             )}
             {buttonText && (
-              <button className="border text-xs font-medium cursor-pointer border-white px-8 py-3.5 hover:bg-white hover:text-black transition duration-500">
+             <button
+                className={`border text-xs font-medium cursor-pointer px-8 py-3.5 transition duration-1000`}
+                style={{
+                  borderColor,
+                  color: borderColor,
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = bgColor;
+                  e.target.style.color = bgColor === "white" ? "black" : "white";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = "transparent";
+                  e.target.style.color = borderColor;
+                }}
+              >
                 {buttonText}
               </button>
             )}

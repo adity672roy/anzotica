@@ -7,30 +7,30 @@ import {
 } from "react-icons/io5";
 import {  BsPause,
   BsPlay ,} from "react-icons/bs";
-
+  
 const slides = [
   {
-    title: "Oceanfront Escape",
-    subtitle: "Where Waves Meet Wonder",
-    img: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
+    title: "The Azure Shores Resort",
+    subtitle: "Luxury Suites with Private Beach Access",
+    img: "https://plus.unsplash.com/premium_photo-1681922761659-07483f67b6c7",
   },
   {
-    title: "Breathtaking Views",
-    subtitle: "Nature at Its Finest",
-    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-  },
-
-  {
-    title: "Mountain Majesty",
-    subtitle: "Breathe in the Fresh Air",
-    img: "https://images.unsplash.com/photo-1519681393784-d120267933ba",
+    title: "Vista Verde Retreat",
+    subtitle: "Panoramic Balconies Overlooking Nature",
+    img: "https://cache.marriott.com/is/image/marriotts7prod/rz-gvarz-lake-g-boat-tour-18968-99133:Classic-Ver?wid=538&fit=constrain",
   },
   {
-    title: "Timeless Elegance",
-    subtitle: "Classic and Refined",
-    img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6",
+    title: "Highland Crest Lodge",
+    subtitle: "Charming Lodges Nestled in the Hills",
+    img: "https://cache.marriott.com/is/image/marriotts7prod/rz-rcr-rissai-valley-32594-76893:Classic-Hor?wid=1374&fit=constrain",
+  },
+  {
+    title: "The Grand Marquee Hotel",
+    subtitle: "Five-Star Heritage Property with Classic Charm",
+    img: "https://cache.marriott.com/is/image/marriotts7prod/rz-sttrz-aerial-resort-23195-12850:Classic-Ver?wid=538&fit=constrain",
   },
 ];
+
 
 const Carousel = () => {
   const [active, setActive] = useState(0);
