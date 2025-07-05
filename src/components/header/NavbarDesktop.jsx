@@ -15,7 +15,7 @@ const NavbarDesktop = ({ navData }) => {
     data.length === 1 && !data[0].left && !data[0].title;
 
   return (
-    <div className="flex justify-between max-w-6xl mx-auto ">
+    <div className="flex justify-between w-full max-w-6xl mx-auto ">
       <div className="flex items-center gap-4 xl:gap-6 text-sm font-medium">
         {Object.entries(navData).map(([key, data]) =>
           isSimpleLink(data) ? (
@@ -68,11 +68,11 @@ const NavbarDesktop = ({ navData }) => {
                     <button
                       key={idx}
                       onClick={() => setSectionIndex(idx)}
-                      className={`text-left flex justify-between items-center p-4 pl-6 font-serif font-medium ${
+                      className={`text-left text-lg  flex justify-between items-center p-4 pl-6 font-serif font-medium ${
                         idx === sectionIndex && "text-zinc-800 bg-[#e0e3ec]"
                       }`}
                     >
-                      {item.title}
+                      {item.title} 
                       {idx === sectionIndex && <IoChevronForward color="#926f29" size={16} />}
                     </button>
                   ))}
@@ -117,7 +117,7 @@ const NavbarDesktop = ({ navData }) => {
                         {navData[active][sectionIndex].right.text}
                       </p>
                     </div>
-                    <button className="text-sm font-semibold pb-1 border-b-2 border-black">
+                    <button className="text-sm cursor-pointer font-semibold pb-1 border-b-2 border-black">
                       {navData[active][sectionIndex].right.button}
                     </button>
                   </div>
@@ -126,7 +126,7 @@ const NavbarDesktop = ({ navData }) => {
             ) : (
               <ul className="flex shadow bg-white flex-col">
                 {navData[active].map((item, idx) => (
-                  <li key={idx} className="hover:underline hover:bg-blue-50 p-4">
+                  <li key={idx} className="hover:underline py-4 text-lg hover:bg-blue-50 p-4">
                     <a href={item.to} className="font-serif  " onClick={() => setActive(null)}>
                       {item.label}
                     </a>

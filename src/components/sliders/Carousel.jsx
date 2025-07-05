@@ -9,11 +9,7 @@ import {  BsPause,
   BsPlay ,} from "react-icons/bs";
   
 const slides = [
-  {
-    title: "Vista Verde Retreat",
-    subtitle: "Panoramic Balconies Overlooking Nature",
-    img: "https://cache.marriott.com/content/dam/marriott-renditions/DPSSW/dpssw-villa-0032-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1300px:*",
-  },
+  
   {
     title: "The Azure Shores Resort",
     subtitle: "Luxury Suites with Private Beach Access",
@@ -22,12 +18,18 @@ const slides = [
   {
     title: "Highland Crest Lodge",
     subtitle: "Charming Lodges Nestled in the Hills",
-    img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/76/bc/fc/rooftop-pool.jpg?w=700&h=-1&s=1",
+    img: "https://cache.marriott.com/is/image/marriotts7prod/mlera-ocean-villa-3558:Feature-Hor?wid=1920&fit=constrain",
+  },
+
+   {
+    title: "Vista Verde Retreat",
+    subtitle: "Panoramic Balconies Overlooking Nature",
+    img: "https://www.maldives.com/_next/image?url=%2Fuploads%2Flarge_The_Ritz_Carlton_Maldives_b7a2d90607.jpg&w=3840&q=90",
   },
   {
     title: "The Grand Marquee Hotel",
     subtitle: "Five-Star Heritage Property with Classic Charm",
-    img: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/677837738.jpg?k=3558556cebf27d03b9cd27e0f7b57f2a2b76b4260d65246a2d8f28612841dc1b&o=&hp=1",
+    img: "https://www.meinemalediven.de/images/hotel-galleries/761/761-11.webp",
   },
 ];
 
@@ -103,7 +105,7 @@ const Carousel = () => {
   };
 
   return (
-    <section className="relative bg-black max-w-6xl mx-auto w-full h-screen overflow-hidden font-serif">
+    <section className="relative bg-black max-w-6xl mx-auto w-full h-screen overflow-hidden ">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={active}
@@ -127,12 +129,15 @@ const Carousel = () => {
             <p className="uppercase text-sm tracking-widest text-gray-300 mb-2">
               Where to Go Next
             </p>
-            <h2 className="text-4xl md:text-6xl font-bold mb-3 drop-shadow-xl">
+            <h2 className="text-4xl md:text-6xl font-bold  drop-shadow-xl">
               {slides[active].title}
             </h2>
-            <p className="text-xl md:text-2xl text-gray-100 font-light">
+            <p className="text-xl  md:text-2xl text-gray-100  ">
               {slides[active].subtitle}
             </p>
+            <button className="cursor-pointer font-bold text-xl border-b-2 border-white  uppercase py-2 px-6   tracking-widest  mt-4">
+             EXPLORE MORE
+            </button>
           </motion.div>
         </motion.div>
       </AnimatePresence>

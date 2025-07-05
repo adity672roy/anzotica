@@ -43,7 +43,7 @@ const Navbar = () => {
               <FaEarthAmericas />
               <span className="max-lg:hidden">English</span>
             </div>
-            <button className="hidden cursor-pointer lg:block border border-black xl:w-[170px] w-[150px] py-4 text-xs font-bold hover:bg-black hover:text-white transition">
+            <button className="hidden cursor-pointer lg:block border border-zinc-900 xl:w-[170px] w-[150px] py-4 text-xs font-bold hover:bg-zinc-900 hover:text-white transition duration-700">
               Sign in or Join
             </button>
             <button className="lg:hidden py-2 cursor-pointer">
