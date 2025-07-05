@@ -20,7 +20,7 @@ const Navbar = () => {
     <>
       {/* Header */}
       <header className="max-lg:sticky max-lg:top-0 max-lg:shadow bg-white px-4 sm:px-6 z-[999]">
-        <div className="max-w-6xl mx-auto border-b border-gray-50/5 md:py-3 py-2 flex justify-between items-center">
+        <div className="max-w-6xl mx-auto border-b border-gray-50/5 py-3 flex justify-between items-center">
           {/* Left */}
           <div className="flex items-center sm:gap-4 gap-2">
             <button
