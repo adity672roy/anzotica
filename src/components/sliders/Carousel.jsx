@@ -10,24 +10,24 @@ import {  BsPause,
   
 const slides = [
   {
-    title: "The Azure Shores Resort",
-    subtitle: "Luxury Suites with Private Beach Access",
-    img: "https://plus.unsplash.com/premium_photo-1681922761659-07483f67b6c7",
-  },
-  {
     title: "Vista Verde Retreat",
     subtitle: "Panoramic Balconies Overlooking Nature",
-    img: "https://cache.marriott.com/is/image/marriotts7prod/rz-gvarz-lake-g-boat-tour-18968-99133:Classic-Ver?wid=538&fit=constrain",
+    img: "https://cache.marriott.com/content/dam/marriott-renditions/DPSSW/dpssw-villa-0032-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1300px:*",
+  },
+  {
+    title: "The Azure Shores Resort",
+    subtitle: "Luxury Suites with Private Beach Access",
+    img: "https://www.watg.com/wp-content/uploads/2024/07/Nujuma-One-Bedroom-Beach-Villa-living-room.jpg",
   },
   {
     title: "Highland Crest Lodge",
     subtitle: "Charming Lodges Nestled in the Hills",
-    img: "https://cache.marriott.com/is/image/marriotts7prod/rz-rcr-rissai-valley-32594-76893:Classic-Hor?wid=1374&fit=constrain",
+    img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/76/bc/fc/rooftop-pool.jpg?w=700&h=-1&s=1",
   },
   {
     title: "The Grand Marquee Hotel",
     subtitle: "Five-Star Heritage Property with Classic Charm",
-    img: "https://cache.marriott.com/is/image/marriotts7prod/rz-sttrz-aerial-resort-23195-12850:Classic-Ver?wid=538&fit=constrain",
+    img: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/677837738.jpg?k=3558556cebf27d03b9cd27e0f7b57f2a2b76b4260d65246a2d8f28612841dc1b&o=&hp=1",
   },
 ];
 
