@@ -71,42 +71,29 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-import { motion } from "framer-motion";
+import { motion ,AnimatePresence} from "framer-motion";
 import Heading from "../heading/Heading";
 
-const SwiperSlider = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const SwiperSlider=()=> {
   const swiperRef = useRef(null);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState("next");
   const totalSlides = hotels.length;
   const progressPercent = ((activeIndex + 1) / totalSlides) * 100;
 
-  useEffect(() => {
-    if (
-      swiperRef.current &&
-      swiperRef.current.params &&
-      prevRef.current &&
-      nextRef.current
-    ) {
-      swiperRef.current.params.navigation.prevEl = prevRef.current;
-      swiperRef.current.params.navigation.nextEl = nextRef.current;
-
-      swiperRef.current.navigation.init();
-      swiperRef.current.navigation.update();
-    }
-  }, []);
-
   return (
     <section className="w-full py-16 bg-blue-100 overflow-hidden">
-      <Heading />
+     <Heading />
+
       <Swiper
         className="cursor-grab"
         modules={[Navigation]}
         loop={true}
         centeredSlides={true}
-        spaceBetween={60}
+        spaceBetween={80}
         slidesPerView="auto"
         speed={1000}
         onSwiper={(swiper) => {
@@ -116,22 +103,25 @@ const SwiperSlider = () => {
       >
         {hotels.map((hotel, index) => {
           const isActive = index === activeIndex;
+
           return (
             <SwiperSlide
               key={index}
               className={`relative ${
                 index % 2 === 0 ? "top-10" : "top-0"
-              } py-10 px-6 !w-full md:!w-[50%] transition-all duration-300`}
+              } py-16 md:px-6 !w-full md:!w-[55%]`}
             >
-              <motion.div
-                transition={{ duration: 2, ease: "linear" }}
-                className="  h-full flex items-center  "
-              >
+              <div className="h-full relative ">
+                {/* Image */}
                 <motion.div
-                  initial={{ x: [0,-50] }}
-                  animate={{ x: isActive ? 0 : 50 }}
-                  transition={{ duration: 1 }}
-                  className="w-full h-[400px]"
+                  initial={{ x: 100, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{
+                    duration: 1,
+                    delay: 0.4,
+                    ease: "linear",
+                  }}
+                  className="w-full md:h-[400px] h-[300px]"
                 >
                   <img
                     src={hotel.image}
@@ -140,34 +130,46 @@ const SwiperSlider = () => {
                   />
                 </motion.div>
 
-                <motion.div
-                  key={isActive ? activeIndex : index}
-                  initial={{ opacity: 0, x: -200 }}
-                  animate={{
-                    opacity: isActive ? 1 : 0,
-                    x: isActive ? 0 : -200,
-                  }}
-                  transition={{ duration: 0.6, ease: "linear" }}
-                  className={`absolute z-50 ${
-                    index % 2 === 0 ? "-top-0" : "bottom-0"
-                  } -right-16 max-w-sm border-2 border-zinc-900 shadow-lg p-2`}
-                >
-                  <div className=" text-center  flex flex-col items-center justify-center text-black h-full bg-zinc-100 gap-2 py-6 px-6  max-w-md mr-auto">
-                    <p className="text-[10px] uppercase   tracking-widest">
-                      Now Open
-                    </p>
-                    <h3 className="text-xl  font-serif w-full  ">
-                      {hotel.name}
-                    </h3>
-                    <p className="text-sm  leading-relaxed">
-                      {hotel.description}
-                    </p>
-                    <button className="cursor-pointer font-semibold border-b-2 border-white transition">
-                      Explore More
-                    </button>
-                  </div>
-                </motion.div>
-              </motion.div>
+                {/* Animated Text */}
+                <AnimatePresence mode="wait">
+                  {isActive && (
+                    <motion.div
+                      key={activeIndex}
+                      initial={{
+                        opacity: 0,
+                        x: direction === "next" ? 200 : -200,
+                      }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{
+                        opacity: 0,
+                        x: direction === "next" ? -200 : 200
+                      }}
+                      transition={{
+                        duration: 0.6, // Faster transition
+                        ease: "linear",
+                      }}
+                      className={`absolute z-50 ${
+                        index % 2 === 0 ? "-top-10" : "-bottom-10"
+                      } md:-right-16 max-md:left-1/2 max-md:-translate-x-1/2  w-[80%] max-w-sm border-2 border-zinc-900 shadow-lg   md:p-2 p-1`}
+                    >
+                      <div className="text-center w-full flex gap-2 flex-col items-center justify-center text-black h-full  bg-zinc-100 md:p-6 p-2 max-w-md  ">
+                        <p className="text-[10px] uppercase tracking-widest">
+                          Now Open
+                        </p>
+                        <h3 className="text-xl font-serif w-full">
+                          {hotel.name}
+                        </h3>
+                        <p className="text-sm leading-relaxed">
+                          {hotel.description}
+                        </p>
+                        <button className="cursor-pointer font-semibold border-b-2 border-black transition pt-2">
+                          Explore More
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </SwiperSlide>
           );
         })}
@@ -178,6 +180,10 @@ const SwiperSlider = () => {
         <div className="flex items-center justify-center gap-4 text-sm font-medium text-black">
           <button
             ref={prevRef}
+            onClick={() => {
+              setDirection("prev");
+              swiperRef.current?.slidePrev();
+            }}
             className="flex cursor-pointer items-center gap-2"
           >
             <HiChevronLeft className="text-lg" />
@@ -193,6 +199,10 @@ const SwiperSlider = () => {
 
           <button
             ref={nextRef}
+            onClick={() => {
+              setDirection("next");
+              swiperRef.current?.slideNext();
+            }}
             className="flex cursor-pointer items-center gap-2"
           >
             <span className="hidden md:inline-block">Next</span>
@@ -206,6 +216,7 @@ const SwiperSlider = () => {
       </div>
     </section>
   );
-};
+}
+
 
 export default SwiperSlider;

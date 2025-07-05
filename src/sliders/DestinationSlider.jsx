@@ -42,11 +42,7 @@ const DestinationSlider=()=> {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-
-  const handleClick = (i) => {
-    setActiveIndex((prev) => (prev === i ? null : i));
-  };
-
+ 
   return (
     <section className=" text-white  min-h-screen bg-zinc-900  ">
     <div className="max-w-6xl mx-auto flex flex-col items-center justify-center h-full   px-4 py-10">
@@ -59,17 +55,17 @@ const DestinationSlider=()=> {
           return (
             <motion.div
               key={i}
-              onClick={() => handleClick(i)}
+              onClick={() => setActiveIndex(i)}
               animate={{
                 ...(isMobile
                   ? { height: isActive ? 400 : 100 }
                   : { flex: isActive ? 4 : 1 }),
                 y: yOffset,
               }}
-              transition={{ duration: 0.5, ease: "linear" }}
-              className={`relative ${
+              transition={{ duration: .8, ease: "linear" }}
+              className={`relative   ${
                 isMobile ? "w-full" : "h-[500px]"
-              } cursor-pointer overflow-hidden group   flex-shrink-0 transition-all duration-300 bg-pink-800 ease-linear`}
+              } cursor-pointer overflow-hidden group   flex-shrink-0 transition-all duration-300 ease-linear`}
             >
               <img
                 src={person.image}
@@ -78,7 +74,7 @@ const DestinationSlider=()=> {
               />
 
               {/* Overlay */}
-              <div className={` bg-black/50 absolute inset-0   flex items-center justify-center text-white`}>
+              <div className={`${isActive ? " bg-black/50":" bg-black/30" }  absolute inset-0   flex items-center justify-center text-white`}>
                 {!isActive ? (
                   <div className="transform -rotate-90 whitespace-nowrap text-xl font-extrabold   uppercase max-md:rotate-0">
                     {person.title}
@@ -86,9 +82,9 @@ const DestinationSlider=()=> {
                 ) : (
                   <div className="flex flex-col justify-end items-start h-full w-full p-6">
                     <motion.div
-                      initial={{ opacity: 0 , y: i % 2 === 0 ?   20 :  0  }}
-                       animate={{ opacity: 1, y: i % 2 === 0 ?   0 : -20 }}
-                      transition={{ ease : "linear" ,duration: 0.5, delay: 1 }}
+                       initial={{ opacity: 0 , y: i % 2 === 0 ?   20 :  0  }}
+                        animate={{ opacity: 1, y: i % 2 === 0 ?   0 : -20 }}
+                       transition={{ ease : "linear" ,duration: 1, delay: 1 }}
                       className="text-3xl font-bold font-serif"
                     >
                       {person.title}
@@ -97,8 +93,8 @@ const DestinationSlider=()=> {
                     <motion.div
                       initial={{ opacity: 0 , y: i % 2 === 0 ?   20 : 0  }}
                        animate={{ opacity: 1, y: i % 2 === 0 ?   0 : -20 }}
-                      transition={{ delay: 1, duration: 0.5, ease : "linear" }}
-                      className=" font-normal pl-6 mt-1"
+                      transition={{ delay: 1, duration: 1, ease : "linear" }}
+                      className=" font-semibold  pl-6 mt-1"
                     >
                       {person.description}
                     </motion.div>
@@ -109,7 +105,7 @@ const DestinationSlider=()=> {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleClick(i);
+                   setActiveIndex(i);
                   }}
                   className={`absolute ${
                     isMobile
@@ -117,7 +113,7 @@ const DestinationSlider=()=> {
                       : i % 2 === 0
                       ? "bottom-6"
                       : "bottom-10"
-                  } right-3 bg-black text-white border-2 border-white rounded-full w-8 h-8 text-xl font-bold flex items-center justify-center shadow-md hover:scale-110 transition`}
+                  } right-3 bg-zinc-900/50 cursor-pointer text-white border-2 border-white rounded-full w-8 h-8 text-xl font-bold flex items-center justify-center shadow-md hover:scale-110 transition`}
                 >
                   <FaPlus size={12} />
                 </button>

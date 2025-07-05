@@ -143,7 +143,7 @@ const HotelSlider =() =>{
         {/* Controls + Progress */}
         <div className=" md:max-w-md max-w-2xs mx-auto flex items-center justify-between mt-8">
           <button
-            className="flex items-center gap-2 text-sm text-neutral-600"
+            className="flex items-center gap-1 cursor-pointer text-sm text-neutral-600"
             onClick={prev}
           >
             <IoChevronBack size={18} />
@@ -159,7 +159,7 @@ const HotelSlider =() =>{
           </div>
 
           <button
-            className="flex items-center gap-2 text-sm text-neutral-600"
+            className="flex items-center gap-1 cursor-pointer text-sm text-neutral-600"
             onClick={next}
           >
             <span className="hidden md:inline-block">Next</span>
