@@ -1,14 +1,13 @@
- 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoClose, IoChevronForward, IoChevronBack } from "react-icons/io5";
-import { FaRegUser } from "react-icons/fa";
+import { FaRegUser,FaChevronDown,FaChevronUp  } from "react-icons/fa";
 import { FaEarthAmericas } from "react-icons/fa6";
-import { IoIosMenu } from "react-icons/io";
-import NavAccordian from "./NavAccordian";
-import {navData} from '../data'
+import { IoIosMenu } from "react-icons/io"; 
+import { navData } from "../data";
+import NavAccordion from "./NavAccordian";
 
- const Navbar = ()=> {
+const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [active, setActive] = useState(null);
   const [sectionIndex, setSectionIndex] = useState(0);
@@ -16,7 +15,15 @@ import {navData} from '../data'
   const [scrolled, setScrolled] = useState(false);
   const [activeMobileSection, setActiveMobileSection] = useState(null);
   const [activeMobileSubsection, setActiveMobileSubsection] = useState(0);
+  
   const dropdownRef = useRef(null);
+
+
+  const [expandedKey, setExpandedKey] = useState(null);
+const toggleExpand = (key) => {
+  setExpandedKey((prev) => (prev === key ? null : key));
+};
+
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -43,7 +50,7 @@ import {navData} from '../data'
     data.length === 1 && !data[0].left && !data[0].title;
 
   return (
-    <> 
+    <>
       <header className="max-lg:sticky max-lg:top-0 max-lg:shadow bg-white px-4 sm:px-6 z-[999]">
         <div className="max-w-5xl mx-auto border-b border-gray-50/5 md:py-3 py-2 flex justify-between items-center">
           <div className="flex items-center sm:gap-4 gap-2">
@@ -57,7 +64,10 @@ import {navData} from '../data'
                 <IoClose size={24} />
               )}
             </button>
-            <a href="/" className="font-serif sm:text-sm text-xs font-semibold uppercase tracking-wide">
+            <a
+              href="/"
+              className="font-serif sm:text-sm text-xs font-semibold uppercase tracking-wide"
+            >
               THE RITZ-CARLTON
             </a>
           </div>
@@ -75,7 +85,7 @@ import {navData} from '../data'
           </div>
         </div>
       </header>
- 
+
       <div
         className={`hidden lg:block sticky px-6 top-0 z-40 shadow-md transition-colors duration-300 ${
           scrolled ? "bg-[#ffffffe6]" : "bg-white"
@@ -113,7 +123,7 @@ import {navData} from '../data'
           <button className="bg-black text-white text-xs w-[150px] py-4 font-bold hover:bg-zinc-900 my-2 transition">
             Reservations
           </button>
- 
+
           <AnimatePresence>
             {active && (
               <motion.div
@@ -217,78 +227,122 @@ import {navData} from '../data'
           </AnimatePresence>
         </div>
       </div>
- 
+
       <AnimatePresence>
         {showMobileMenu && (
           <motion.div
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
-            transition={{ duration: 0.3 }}
-            className="fixed lg:hidden top-0 left-0 w-full h-full  bg-white z-[100]  px-6  pt-20 pb-10"
+            transition={{ duration: 0.6 }}
+            className="fixed lg:hidden top-0 left-0 w-full h-full  bg-white z-[100]   pt-20 pb-10"
           >
-            <div  className=" max-w-2xl h-full navscrollbar  overflow-y-auto  mx-auto">
-          <div className=" ">
-              {activeMobileSection && (
-                <button
-                className=" flex cursor-pointer items-center pt-4 justify-center gap-2 font-semibold text-sm"
-                  onClick={() => {
-                    if (activeMobileSubsection !== 0) {
-                      setActiveMobileSubsection(0);
-                    } else {
-                      setActiveMobileSection(null);
-                    }
-                  }}
-                >
-                  <IoChevronBack  /> <span>BACK</span>
-                </button>
-              )}
-            </div>
+            <div className="px-4 max-w-3xl h-full navscrollbar  overflow-y-auto  mx-auto">
+               
 
-         
             {!activeMobileSection ? (
-              <ul className="space-y-2 py-4 px-2 sm:px-4 text-sm font-serif">
-                {Object.entries(navData).map(([key, items], idx) => (
-                  <li key={idx}>
-                    {items.length === 1 && !items[0].left ? (
-                      <a
-                        href={items[0].to}
-                        onClick={() => setShowMobileMenu(false)}
-                        className="block py-4 px-2 sm:text-lg border-b border-zinc-200"
-                      >
-                        {key} 
-                      </a>
-                    ) : (
-                      <button
-                        className="w-full flex justify-between items-center py-4 px-2 sm:text-lg cursor-pointer border-b border-zinc-200"
-                        onClick={() => setActiveMobileSection(key)}
-                      >
-                        {key}
-                        <IoChevronForward />
-                      </button>
-                    )}
-                  </li>
-                ))}
-                <button className="bg-black text-white text-xs w-[150px] py-4 font-bold hover:bg-zinc-900 my-2 transition">
-                  Reservations
-                </button>
-              </ul>
-            ) : isMega(activeMobileSection) ? (
-             <NavAccordian navData={navData} activeMobileSection={activeMobileSection} />
-            ) : ( 
-              <ul className="mt-10  font-serif  px-2 sm:px-4">
-                {navData[activeMobileSection].map((item, idx) => (
-                  <li key={idx} className="sm:text-lg py-4 px-2 border-b border-zinc-200 hover:bg-blue-50 cursor-pointer">
-                    <a href={item.to}>{item.label}</a>
-                  </li>
-                ))}
-              </ul>
-            )}
+  <ul className="space-y-2  text-sm font-serif">
+  {Object.entries(navData).map(([key, items], idx) => {
+  const isDropdownOnly =
+    key === "Hotels & Resorts" && items.every((i) => i.label && i.to);
+  const isMegaMenu = ["About The Ritz-Carlton", "The Journey"].includes(key);
+  const isSimpleLink =
+    items.length === 1 && !items[0]?.left && !items[0]?.links && !items[0]?.title;
+
+  return (
+    <li key={idx} className="border-b border-zinc-200">
+      {isDropdownOnly ? (
+  <>
+    <button
+      onClick={() => toggleExpand(key)}
+      className="w-full flex justify-between items-center py-4 px-2 sm:text-lg"
+    >
+      <span>{key} </span>
+      {expandedKey === key ? (
+        <FaChevronUp className="text-xs text-[#927c42]" />
+      ) : (
+        <FaChevronDown className="text-xs text-[#927c42]" />
+      )}
+    </button>
+    {expandedKey === key && (
+      <ul className="bg-[#f3f4f7] w-full sm:px-4 px-2 py-2 font-serif sm:text-base">
+        {items.map((item, i) => (
+            <a href={item.to} className="w-full" onClick={() => setShowMobileMenu(false)}>
+          <li key={i} className="py-2 w-full ">
+              {item.label} 
+          </li>
+            </a>
+        ))}
+      </ul>
+    )}
+  </>
+) : isMegaMenu ? (
+  <>
+    <button
+      onClick={() => toggleExpand(key)}
+      className="w-full flex justify-between items-center py-4 px-2 sm:text-lg"
+    >
+      <span>{key}</span>
+      {expandedKey === key ? (
+        <FaChevronUp className="text-xs text-[#927c42]" />
+      ) : (
+        <FaChevronDown className="text-xs text-[#927c42]" />
+      )}
+    </button>
+    {expandedKey === key && (
+      <div className="bg-[#e8ebf2] px-2 py-1 sm:px-4 sm:py-2">
+        {items.map((subItem, subIdx) => (
+          <button
+            key={subIdx}
+            className="w-full flex justify-between items-center py-3 px-2 sm:text-base font-medium  cursor-pointer"
+            onClick={() => {
+              setActiveMobileSection(key);
+              setActiveMobileSubsection(subIdx);
+            }}
+          >
+            {subItem.title}
+            <IoChevronForward />
+          </button>
+        ))}
+      </div>
+    )}
+  </>
+
+
+      ) : isSimpleLink ? (
+        <a
+          href={items[0].to}
+          onClick={() => setShowMobileMenu(false)}
+          className="block py-4 px-2 sm:text-lg text-sm text-zinc-800 "
+        >
+          {key}
+        </a>
+      ) : null}
+    </li>
+  );
+})}
+
+
+    <button className="bg-black text-white text-xs w-[150px] py-4 font-bold hover:bg-zinc-900 my-2 transition">
+      Reserve Now
+    </button>
+  </ul>
+) : (
+   <NavAccordion
+  navData={navData}
+  activeMobileSection={activeMobileSection}
+  activeMobileSubsection={activeMobileSubsection}
+  setActiveMobileSubsection={setActiveMobileSubsection}
+  setActiveMobileSection={setActiveMobileSection}
+/>
+
+)}
+
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </>
   );
-}
-export default   Navbar
+};
+export default Navbar;

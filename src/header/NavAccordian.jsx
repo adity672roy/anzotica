@@ -1,75 +1,67 @@
-import { useState } from "react";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+  
+import { IoChevronBack } from "react-icons/io5";
+const NavAccordion = ({
+  navData,
+  activeMobileSection,
+  activeMobileSubsection,
+  setActiveMobileSubsection,
+  setActiveMobileSection,
+}) => {
+  const section = navData[activeMobileSection]?.[activeMobileSubsection];
 
-const NavAccordion = ({ navData, activeMobileSection }) =>{
-  const [openIndex, setOpenIndex] = useState(null);
-
-  const toggleSection = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  if (!section) return null;
 
   return (
-    <div>
-      {navData[activeMobileSection].length > 1 && (
-        <ul className="pt-6 md:pt-10 sm:px-4 px-2   font-serif">
-          {navData[activeMobileSection].map((subItem, subIdx) => (
-            <li key={subIdx} className="mb-1">
-              <button
-                onClick={() => toggleSection(subIdx)}
-                className={`w-full bg-zinc-900 sm:text-lg text-white px-4 flex items-center justify-between py-2 sm:py-4 text-left ${
-                  subIdx === openIndex ? "font-semibold bg-[#f5f6f9]" : ""
-                }`}
-              >
-                {subItem.title}
-                {subIdx === openIndex ? (
-                  <FaChevronUp className="ml-2 text-xs" />
-                ) : (
-                  <FaChevronDown className="ml-2 text-xs" />
-                )}
-              </button>
+    <div className=" ">
+     
+      <div className="flex gap-2 px-2  bg-zinc-200 py-6 w-full items-center justify-between mb-4">
 
-             
-              {subIdx === openIndex && (
-                <div className="pl-2 pt-2">
-                  <ul className="space-y-2 pb-4 font-sans font-medium">
-                    {subItem.left.map((item, idx) => (
-                      <li key={idx} className="py-1 text-center">
-                        <a href="#" className="hover:underline  block">
-                          {typeof item === "string" ? item : item.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="pb-4">
-                    <img
-                      src={subItem.right.image}
-                      alt="Promo"
-                      className="h-[300px] w-full object-cover mb-3"
-                    />
-<div className="flex gap-2 flex-col items-center justify-center w-full">
+      <button
+        className="  flex cursor-pointer items-center justify-center gap-2 font-semibold  text-sm p-2"
+        onClick={() => {
+          setActiveMobileSubsection(null);
+          setActiveMobileSection(null);
+        }}
+      >
+        <IoChevronBack size={16} />  
+      </button>
 
-                    <p className="text-sm  font-sans tracking-widest font-semibold uppercase  text-zinc-700 ">
-                      {subItem.right.title}
-                    </p>
-                    <p className="max-w-sm  text-center  font-serif text-zinc-700 ">
-                      {subItem.right.text}
-                    </p>
-                     
-                    <a
-                      href="#"
-                      className="inline-block  font-sans px-2 py-1  border-b-2 border-black font-medium  "
-                    >
-                      {subItem.right.button}
-                    </a>
-</div>
-                  </div>
-                </div>
-              )}
+     
+      <h2 className="sm:text-lg text-sm text-center w-full font-medium uppercase tracking-wide   ">
+        {section.title}
+      </h2>
+      </div>
+
+      <div className=" px-4 flex flex-col gap-6">
+        <ul className="space-y-2 font-sans font-medium">
+          {section.left.map((item, idx) => (
+            <li key={idx} className="py-2">
+              <a href="#" className="  block">
+                {typeof item === "string" ? item : item.label}
+              </a>
             </li>
           ))}
         </ul>
-      )}
+
+        <div>
+          <img
+            src={section.right.image}
+            alt={section.right.title}
+            className="w-full h-full object-cover mb-4"
+          />
+          <p className="text-sm uppercase font-semibold tracking-widest text-zinc-700">
+            {section.right.title}
+          </p>
+          <p className="text-zinc-700 font-serif mt-2 mb-4">
+            {section.right.text}
+          </p>
+          <a href="#" className="inline-block border-b-2 border-black font-medium">
+            {section.right.button}
+          </a>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
 export default  NavAccordion

@@ -59,8 +59,7 @@ export const navData = {
         title: "The Journey",
         text: "Where will you go next? From far-flung locales to urban favorites, find inspiration for your next great escape.",
         image:
-          "https://plus.unsplash.com/premium_photo-1676139860173-67a2f30f0d8a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGxhY2VzfGVufDB8MHwwfHx8MA%3D%3D",
-        button: "The Journey",
+  "https://plus.unsplash.com/premium_photo-1663039918118-aba9efab2d34?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE3fHx8ZW58MHx8fHx8",     button: "The Journey",
       },
     },
     {
