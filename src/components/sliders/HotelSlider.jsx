@@ -109,7 +109,7 @@ const HotelSlider = () => {
             dragConstraints={{ left: 0, right: 0 }}
             onDragEnd={handleDragEnd}
             transition={{ ease: "linear" }}
-            className="flex  h-[450px] items-center justify-center  cursor-grab "
+            className="flex pt-4 h-[450px] items-center justify-center  cursor-grab "
           >
             {getVisibleHotels().map((hotel, i) => (
               <motion.div
