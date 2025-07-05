@@ -71,10 +71,10 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-import { motion ,AnimatePresence} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Heading from "../heading/Heading";
 
-const SwiperSlider=()=> {
+const SwiperSlider = () => {
   const swiperRef = useRef(null);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -85,15 +85,26 @@ const SwiperSlider=()=> {
   const progressPercent = ((activeIndex + 1) / totalSlides) * 100;
 
   return (
-    <section className="w-full py-16 bg-blue-100 overflow-hidden">
-     <Heading />
-
+    <section className="w-full py-16 overflow-hidden">
+     <Heading subHeading={"Where to Go Next"} heading={"New Hotels"} description={"Boundary-pushing architecture, innovative amenities, intriguing destinations — all with legendary Ritz-Carlton service and attention to detail. Discover the newest hotels and resorts from The Ritz-Carlton and open up a world of possibility."} buttonText={"See What’s New"}/>
+        
       <Swiper
         className="cursor-grab"
         modules={[Navigation]}
         loop={true}
         centeredSlides={true}
-        spaceBetween={80}
+        breakpoints={{
+          0: {
+            spaceBetween: 40,
+          },
+
+          1024: {
+            spaceBetween: 60,
+          },
+          1240: {
+            spaceBetween: 80,
+          },
+        }}
         slidesPerView="auto"
         speed={1000}
         onSwiper={(swiper) => {
@@ -121,7 +132,7 @@ const SwiperSlider=()=> {
                     delay: 0.4,
                     ease: "linear",
                   }}
-                  className="w-full md:h-[400px] h-[300px]"
+                  className="w-full  h-[400px]"
                 >
                   <img
                     src={hotel.image}
@@ -142,7 +153,7 @@ const SwiperSlider=()=> {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{
                         opacity: 0,
-                        x: direction === "next" ? -200 : 200
+                        x: direction === "next" ? -200 : 200,
                       }}
                       transition={{
                         duration: 0.6, // Faster transition
@@ -184,13 +195,13 @@ const SwiperSlider=()=> {
               setDirection("prev");
               swiperRef.current?.slidePrev();
             }}
-            className="flex cursor-pointer items-center gap-2"
+            className="flex cursor-pointer items-center gap-1"
           >
-            <HiChevronLeft className="text-lg" />
+            <HiChevronLeft className="h-4 w-4" />
             <span className="hidden md:inline-block">Previous</span>
           </button>
 
-          <div className="relative w-56 h-0.5 bg-gray-300 mx-4">
+          <div className="relative w-56 h-0.5 bg-gray-300">
             <div
               className="absolute h-1 bg-black transition-all duration-300"
               style={{ width: `${progressPercent}%` }}
@@ -203,10 +214,10 @@ const SwiperSlider=()=> {
               setDirection("next");
               swiperRef.current?.slideNext();
             }}
-            className="flex cursor-pointer items-center gap-2"
+            className="flex cursor-pointer items-center gap-1"
           >
             <span className="hidden md:inline-block">Next</span>
-            <HiChevronRight className="text-lg" />
+            <HiChevronRight className="h-4 w-4" />
           </button>
         </div>
 
@@ -216,7 +227,6 @@ const SwiperSlider=()=> {
       </div>
     </section>
   );
-}
-
+};
 
 export default SwiperSlider;

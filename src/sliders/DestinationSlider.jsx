@@ -47,7 +47,8 @@ const DestinationSlider=()=> {
     <section className=" text-white  min-h-screen bg-zinc-900  ">
     <div className="max-w-6xl mx-auto flex flex-col items-center justify-center h-full   px-4 py-10">
       <Heading subHeading={"The Journey"} heading={"Of a Lifetime"} description={"Let The Ritz-Carlton take you to the ends of the earth. Discover distinctive resorts in the world’s rarest escapes through Ritz-Carlton Reserve, where immersive experiences and unspoiled natural splendor forge lasting connections."} buttonText={"Explore Ritz-Carlton Reserve"}/>
-      <div className="flex max-md:flex-col pt-10  md:pt-20 gap-10 w-full max-w-5xl overflow-hidden ">
+      
+      <div className="flex max-md:flex-col pt-10  md:pt-20 gap-10  w-full   overflow-hidden ">
         {data.map((person, i) => {
           const isActive = activeIndex === i;
           const yOffset = isMobile ? 0 : i % 2 === 0 ? -20 : 20;

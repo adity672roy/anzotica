@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion"; 
+import { motion, AnimatePresence } from "framer-motion";
 import Heading from "../heading/Heading";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 
@@ -54,7 +54,7 @@ const hotels = [
   },
 ];
 
-const HotelSlider =() =>{
+const HotelSlider = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [perPage, setPerPage] = useState(4);
 
@@ -99,16 +99,15 @@ const HotelSlider =() =>{
   return (
     <section className="bg-zinc-900 text-white">
       <div className="w-full   overflow-x-hidden max-w-6xl mx-auto py-10 px-2">
-        <Heading subHeading={"Destinations"} heading={"Journey Farther"}  />
+        <Heading subHeading={"Destinations"} heading={"Journey Farther"} />
         <AnimatePresence mode="wait">
           <motion.div
             key={startIndex}
             initial={{ x: 50 }}
             animate={{ x: 0 }}
             drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                onDragEnd={handleDragEnd}
-                
+            dragConstraints={{ left: 0, right: 0 }}
+            onDragEnd={handleDragEnd}
             transition={{ ease: "linear" }}
             className="flex  h-[450px] items-center justify-center  cursor-grab "
           >
@@ -116,17 +115,16 @@ const HotelSlider =() =>{
               <motion.div
                 key={i}
                 initial={{ y: 0 }}
-                 animate={{
-                  y: i % 2 === 0 ? -20 : 20,  
+                animate={{
+                  y: i % 2 === 0 ? -20 : 20,
                 }}
-                transition={{ duration: 0.3, ease: "linear" }}  
+                transition={{ duration: 0.3, ease: "linear" }}
                 className="w-[300px]  flex  items-center justify-center flex-col gap-4 border-r border-zinc-800 px-4 sm:px-6 md:px-8 lg:px-10 "
               >
                 <div className="text-5xl text-left w-full text-[#8B6A29] font-serif">
                   {hotel.number}
                 </div>
-                <div className="overflow-hidden relative "
-                >
+                <div className="overflow-hidden relative ">
                   <div className="absolute top-0 left-0 h-full w-full"></div>
                   <img
                     src={hotel.image}
@@ -176,5 +174,5 @@ const HotelSlider =() =>{
       </div>
     </section>
   );
-}
-export default  HotelSlider
+};
+export default HotelSlider;
