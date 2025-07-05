@@ -28,7 +28,7 @@ const NavAccordion = ({ navData, activeMobileSection }) =>{
                 )}
               </button>
 
-              {/* Accordion Content */}
+             
               {subIdx === openIndex && (
                 <div className="pl-2 pt-2">
                   <ul className="space-y-2 pb-4 font-sans font-medium">

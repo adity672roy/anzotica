@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Heading from "../heading/Heading";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import SliderNavigation from "./SliderNavigation";
 
 const hotels = [
   {
@@ -62,15 +63,15 @@ const HotelSlider = () => {
     const updatePerPage = () => {
       const width = window.innerWidth;
       if (width < 640) {
-        setPerPage(2); // < sm
+        setPerPage(2);  
       } else if (width < 768) {
-        setPerPage(3); // sm
+        setPerPage(3);  
       } else {
-        setPerPage(4); // md and up
+        setPerPage(4);  
       }
     };
 
-    updatePerPage(); // on load
+    updatePerPage();  
     window.addEventListener("resize", updatePerPage);
     return () => window.removeEventListener("resize", updatePerPage);
   }, []);
@@ -139,38 +140,19 @@ const HotelSlider = () => {
             ))}
           </motion.div>
         </AnimatePresence>
+ 
 
-        {/* Controls + Progress */}
-        <div className=" md:max-w-md max-w-2xs mx-auto flex items-center justify-between mt-8">
-          <button
-            className="flex items-center gap-1 cursor-pointer text-sm text-neutral-600"
-            onClick={prev}
-          >
-            <IoChevronBack size={18} />
-            <span className="hidden md:inline-block">Previous</span>
-          </button>
 
-          <div className="w-full mx-2 relative h-1 bg-gray-300   overflow-hidden">
-            <motion.div
-              className="h-full bg-[#8B6A29]"
-              style={{ width: `${progress}%` }}
-              transition={{ ease: "linear", duration: 0.3 }}
-            />
-          </div>
+<SliderNavigation
+  current={startIndex + 1}
+  total={hotels.length}
+  progress={progress}
+  onPrev={prev}
+  onNext={next}
+/>
 
-          <button
-            className="flex items-center gap-1 cursor-pointer text-sm text-neutral-600"
-            onClick={next}
-          >
-            <span className="hidden md:inline-block">Next</span>
-            <IoChevronForward size={18} />
-          </button>
-        </div>
 
-        {/* Optional Text Info */}
-        <p className="text-center text-sm text-gray-500 mt-2">
-          {startIndex + 1} / {hotels.length}
-        </p>
+
       </div>
     </section>
   );

@@ -168,7 +168,7 @@ const Carousel = () => {
 
       <div className="absolute bottom-4 right-4 left-1/2 md:left-auto md:right-4 -translate-x-1/2 md:translate-x-0 z-30   backdrop-blur-md py-1 px-4   w-fit">
         <div className="flex items-center justify-between gap-2 max-w-[300px]">
-          {/* ⬅️ Prev */}
+          
           <button
             onClick={() => paginate(-1)}
             className="p-2 rounded-full  cursor-pointer border border-white hover:bg-white/30   transition"
@@ -185,8 +185,7 @@ const Carousel = () => {
               <BsPause className="text-white w-4 h-4" />
             )}
           </button>
-
-          {/* Next */}
+ 
           <button
             onClick={() => paginate(1)}
             className="p-2 rounded-full cursor-pointer  border border-white hover:bg-white/30   transition"
@@ -194,15 +193,14 @@ const Carousel = () => {
             <IoChevronForward className="text-white w-4 h-4" />
           </button>
 
-          {/* Progress bar */}
-          <div className="h-1 w-28 bg-white/20 overflow-hidden  ">
+            <div className="h-1 w-28 bg-white/20 overflow-hidden  ">
             <div
               className="h-full bg-white transition-all duration-500 ease-linear"
               style={{ width: `${((active + 1) / slides.length) * 100}%` }}
             />
           </div>
 
-          {/* Counter */}
+          
           <span className="text-white text-sm font-medium min-w-fit text-right">
             {active + 1}
           </span>

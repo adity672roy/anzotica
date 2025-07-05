@@ -74,7 +74,7 @@ const DestinationSlider=()=> {
                 className="w-full h-full  object-cover object-center group-hover:scale-105 transition-transform duration-500"
               />
 
-              {/* Overlay */}
+            
               <div className={`${isActive ? " bg-black/50":" bg-black/30" }  absolute inset-0   flex items-center justify-center text-white`}>
                 {!isActive ? (
                   <div className="transform -rotate-90 whitespace-nowrap text-xl font-extrabold   uppercase max-md:rotate-0">

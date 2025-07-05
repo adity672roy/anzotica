@@ -73,6 +73,7 @@ import "swiper/css/navigation";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { motion, AnimatePresence } from "framer-motion";
 import Heading from "../heading/Heading";
+import SliderNavigation from "./SliderNavigation";
 
 const SwiperSlider = () => {
   const swiperRef = useRef(null);
@@ -86,8 +87,15 @@ const SwiperSlider = () => {
 
   return (
     <section className="w-full py-16 overflow-hidden">
-     <Heading subHeading={"Where to Go Next"} heading={"New Hotels"} description={"Boundary-pushing architecture, innovative amenities, intriguing destinations — all with legendary Ritz-Carlton service and attention to detail. Discover the newest hotels and resorts from The Ritz-Carlton and open up a world of possibility."} buttonText={"See What’s New"}/>
-        
+      <Heading
+        subHeading={"Where to Go Next"}
+        heading={"New Hotels"}
+        description={
+          "Boundary-pushing architecture, innovative amenities, intriguing destinations — all with legendary Ritz-Carlton service and attention to detail. Discover the newest hotels and resorts from The Ritz-Carlton and open up a world of possibility."
+        }
+        buttonText={"See What’s New"}
+      />
+
       <Swiper
         className="cursor-grab"
         modules={[Navigation]}
@@ -102,7 +110,7 @@ const SwiperSlider = () => {
             spaceBetween: 60,
           },
           1240: {
-            spaceBetween: 80,
+            spaceBetween: 100,
           },
         }}
         slidesPerView="auto"
@@ -123,7 +131,6 @@ const SwiperSlider = () => {
               } py-16 md:px-6 !w-full md:!w-[55%]`}
             >
               <div className="h-full relative ">
-                {/* Image */}
                 <motion.div
                   initial={{ x: 100, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
@@ -132,7 +139,7 @@ const SwiperSlider = () => {
                     delay: 0.4,
                     ease: "linear",
                   }}
-                  className="w-full  h-[400px]"
+                  className="shadow-xl flex justify-center items-center  h-[400px]"
                 >
                   <img
                     src={hotel.image}
@@ -141,27 +148,26 @@ const SwiperSlider = () => {
                   />
                 </motion.div>
 
-                {/* Animated Text */}
                 <AnimatePresence mode="wait">
                   {isActive && (
                     <motion.div
                       key={activeIndex}
                       initial={{
                         opacity: 0,
-                        x: direction === "next" ? 200 : -200,
+                        x: 150,
                       }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{
                         opacity: 0,
-                        x: direction === "next" ? -200 : 200,
+                        x: -150,
                       }}
                       transition={{
-                        duration: 0.6, // Faster transition
+                        duration: 0.6,
                         ease: "linear",
                       }}
                       className={`absolute z-50 ${
                         index % 2 === 0 ? "-top-10" : "-bottom-10"
-                      } md:-right-16 max-md:left-1/2 max-md:-translate-x-1/2  w-[80%] max-w-sm border-2 border-zinc-900 shadow-lg   md:p-2 p-1`}
+                      } md:-right-16 max-md:left-1/2 max-md:-translate-x-1/2  w-[80%] max-w-sm border-2 border-[#8B6A29] shadow-lg   md:p-2 p-1`}
                     >
                       <div className="text-center w-full flex gap-2 flex-col items-center justify-center text-black h-full  bg-zinc-100 md:p-6 p-2 max-w-md  ">
                         <p className="text-[10px] uppercase tracking-widest">
@@ -186,44 +192,20 @@ const SwiperSlider = () => {
         })}
       </Swiper>
 
-      {/* Progress + Navigation */}
       <div className="mt-10 text-center">
-        <div className="flex items-center justify-center gap-4 text-sm font-medium text-black">
-          <button
-            ref={prevRef}
-            onClick={() => {
-              setDirection("prev");
-              swiperRef.current?.slidePrev();
-            }}
-            className="flex cursor-pointer items-center gap-1"
-          >
-            <HiChevronLeft className="h-4 w-4" />
-            <span className="hidden md:inline-block">Previous</span>
-          </button>
-
-          <div className="relative w-56 h-0.5 bg-gray-300">
-            <div
-              className="absolute h-1 bg-black transition-all duration-300"
-              style={{ width: `${progressPercent}%` }}
-            />
-          </div>
-
-          <button
-            ref={nextRef}
-            onClick={() => {
-              setDirection("next");
-              swiperRef.current?.slideNext();
-            }}
-            className="flex cursor-pointer items-center gap-1"
-          >
-            <span className="hidden md:inline-block">Next</span>
-            <HiChevronRight className="h-4 w-4" />
-          </button>
-        </div>
-
-        <div className="mt-2 text-base font-semibold text-black">
-          {activeIndex + 1} / {totalSlides}
-        </div>
+        <SliderNavigation
+          current={activeIndex + 1}
+          total={totalSlides}
+          progress={progressPercent}
+          onPrev={() => {
+            setDirection("prev");
+            swiperRef.current?.slidePrev();
+          }}
+          onNext={() => {
+            setDirection("next");
+            swiperRef.current?.slideNext();
+          }}
+        />
       </div>
     </section>
   );

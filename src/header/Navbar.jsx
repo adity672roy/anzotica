@@ -43,8 +43,7 @@ import {navData} from '../data'
     data.length === 1 && !data[0].left && !data[0].title;
 
   return (
-    <>
-      {/* Top Header */}
+    <> 
       <header className="max-lg:sticky max-lg:top-0 max-lg:shadow bg-white px-4 sm:px-6 z-[999]">
         <div className="max-w-5xl mx-auto border-b border-gray-50/5 md:py-3 py-2 flex justify-between items-center">
           <div className="flex items-center sm:gap-4 gap-2">
@@ -114,8 +113,7 @@ import {navData} from '../data'
           <button className="bg-black text-white text-xs w-[150px] py-4 font-bold hover:bg-zinc-900 my-2 transition">
             Reservations
           </button>
-
-          {/* Dropdown */}
+ 
           <AnimatePresence>
             {active && (
               <motion.div
@@ -219,8 +217,7 @@ import {navData} from '../data'
           </AnimatePresence>
         </div>
       </div>
-
-      {/* Mobile Sidebar */}
+ 
       <AnimatePresence>
         {showMobileMenu && (
           <motion.div
@@ -231,9 +228,7 @@ import {navData} from '../data'
             className="fixed lg:hidden top-0 left-0 w-full h-full  bg-white z-[100]  px-6  pt-20 pb-10"
           >
             <div  className=" max-w-2xl h-full navscrollbar  overflow-y-auto  mx-auto">
-
-            {/* Header */}
-            <div className=" ">
+          <div className=" ">
               {activeMobileSection && (
                 <button
                 className=" flex cursor-pointer items-center pt-4 justify-center gap-2 font-semibold text-sm"
@@ -250,7 +245,7 @@ import {navData} from '../data'
               )}
             </div>
 
-            {/* Menu */}
+         
             {!activeMobileSection ? (
               <ul className="space-y-2 py-4 px-2 sm:px-4 text-sm font-serif">
                 {Object.entries(navData).map(([key, items], idx) => (
@@ -280,8 +275,7 @@ import {navData} from '../data'
               </ul>
             ) : isMega(activeMobileSection) ? (
              <NavAccordian navData={navData} activeMobileSection={activeMobileSection} />
-            ) : (
-              // hotels and resorts
+            ) : ( 
               <ul className="mt-10  font-serif  px-2 sm:px-4">
                 {navData[activeMobileSection].map((item, idx) => (
                   <li key={idx} className="sm:text-lg py-4 px-2 border-b border-zinc-200 hover:bg-blue-50 cursor-pointer">
