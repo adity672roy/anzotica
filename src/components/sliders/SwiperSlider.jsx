@@ -3,7 +3,7 @@ const hotels = [
     number: "01",
     name: "The Ritz-Carlton, Dubai",
     image:
-      "https://www.miamiluxuryhomes.com/wp-content/uploads/2025/01/Rendering-of-Ritz-Carlton-South-Beach-Valet-Entry.jpg",
+      "https://cache.marriott.com/is/image/marriotts7prod/jedrj-entrance-0016:Wide-Hor?wid=1336&fit=constrain",
     description:
       "Luxury beach resort with skyline views and elegant Arabian design.",
   },
@@ -11,7 +11,7 @@ const hotels = [
     number: "02",
     name: "Zadún, a Ritz-Carlton",
     image:
-      "https://miamiresidential.com/wp-content/uploads/2024/03/04-The-Ritz-Carlton-Residences-South-Beach-Pool.jpg",
+      "https://cache.marriott.com/content/dam/marriott-renditions/SJDZR/sjdzr-reserve-beachfront-8017-hor-wide.jpg",
     description:
       "Desert escape offering personalized service and immersive natural beauty.",
   },

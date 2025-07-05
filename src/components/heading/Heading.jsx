@@ -7,7 +7,7 @@ const Heading = ({  subHeading,
   borderColor = "white",
   bgColor = "white", }) => {
   return (
-    <section className="w-full sm:px-4 px-2 md:px-10 md:py-10 pt-6">
+    <section className="w-full px-4   md:px-10 md:py-10 pt-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between gap-4">
         <motion.div
           initial={{ opacity: 0, x: -50 }}

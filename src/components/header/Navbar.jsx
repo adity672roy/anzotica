@@ -20,7 +20,7 @@ const Navbar = () => {
     <>
       {/* Header */}
       <header className="max-lg:sticky max-lg:top-0 max-lg:shadow bg-white px-4 sm:px-6 z-[999]">
-        <div className="max-w-5xl mx-auto border-b border-gray-50/5 md:py-3 py-2 flex justify-between items-center">
+        <div className="max-w-6xl mx-auto border-b border-gray-50/5 md:py-3 py-2 flex justify-between items-center">
           {/* Left */}
           <div className="flex items-center sm:gap-4 gap-2">
             <button
@@ -38,12 +38,12 @@ const Navbar = () => {
           </div>
 
           {/* Right */}
-          <div className="flex items-center gap-4 md:gap-6 text-sm font-medium text-gray-800">
+          <div className="flex items-center gap-4 md:gap-6  font-medium text-gray-800">
             <div className="flex items-center space-x-1 hover:text-black cursor-pointer">
               <FaEarthAmericas />
               <span className="max-lg:hidden">English</span>
             </div>
-            <button className="hidden cursor-pointer lg:block border border-black w-[150px] py-4 text-xs font-semibold hover:bg-black hover:text-white transition">
+            <button className="hidden cursor-pointer lg:block border border-black xl:w-[170px] w-[150px] py-4 text-xs font-bold hover:bg-black hover:text-white transition">
               Sign in or Join
             </button>
             <button className="lg:hidden py-2 cursor-pointer">

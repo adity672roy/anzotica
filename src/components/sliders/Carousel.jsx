@@ -103,7 +103,7 @@ const Carousel = () => {
   };
 
   return (
-    <section className="relative bg-black max-w-5xl mx-auto w-full h-screen overflow-hidden font-serif">
+    <section className="relative bg-black max-w-6xl mx-auto w-full h-screen overflow-hidden font-serif">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={active}

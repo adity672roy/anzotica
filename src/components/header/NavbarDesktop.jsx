@@ -15,14 +15,14 @@ const NavbarDesktop = ({ navData }) => {
     data.length === 1 && !data[0].left && !data[0].title;
 
   return (
-    <div className="flex justify-between max-w-5xl mx-auto">
-      <div className="flex items-center gap-4 text-sm font-medium">
+    <div className="flex justify-between max-w-6xl mx-auto ">
+      <div className="flex items-center gap-4 xl:gap-6 text-sm font-medium">
         {Object.entries(navData).map(([key, data]) =>
           isSimpleLink(data) ? (
             <a
               key={key}
               href={data[0].to}
-              className={`text-zinc-900 h-full flex items-center text-xs uppercase py-3 hover:text-black hover:border-b-4 hover:border-black ${active === key ? "border-b-4 border-black" : ""}`}
+              className={`text-zinc-900  h-full flex items-center text-sm uppercase py-3 hover:text-black hover:border-b-4 hover:border-black ${active === key ? "border-b-4 border-black" : ""}`}
             >
               {key}
             </a>
@@ -33,7 +33,7 @@ const NavbarDesktop = ({ navData }) => {
                 setActive(active === key ? null : key);
                 setSectionIndex(0);
               }}
-              className={`text-zinc-900 h-full text-xs uppercase py-3 hover:text-black hover:border-b-4 hover:border-black ${active === key ? "border-b-4 border-black" : ""}`}
+              className={`text-zinc-900 h-full text-sm uppercase py-3 hover:text-black hover:border-b-4 hover:border-black ${active === key ? "border-b-4 border-black" : ""}`}
             >
               {key}
             </button>
@@ -41,7 +41,7 @@ const NavbarDesktop = ({ navData }) => {
         )}
       </div>
 
-      <button className=" text-white text-xs w-[150px] py-4 font-bold hover:bg-zinc-700 bg-zinc-900 duration-700 cursor-pointer my-2 transition">
+      <button className=" text-white text-xs xl:w-[170px] w-[150px] py-5 font-bold hover:bg-zinc-700 bg-zinc-900 duration-700 cursor-pointer my-2 transition">
         Reserve Now
       </button>
 
@@ -53,7 +53,7 @@ const NavbarDesktop = ({ navData }) => {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
             ref={dropdownRef}
-            className="absolute top-full left-0 right-0 z-10 mx-auto max-w-5xl"
+            className="absolute  top-full left-0 right-0 z-10 mx-auto max-w-6xl"
           >
             <div className="absolute top-2 right-2">
               <button onClick={() => setActive(null)}>
@@ -78,7 +78,7 @@ const NavbarDesktop = ({ navData }) => {
                   ))}
                 </div>
                 <div className="flex flex-col md:flex-row h-full gap-6 md:w-2/3 p-6">
-                  <ul className="w-[65%] flex flex-col gap-6 border-r border-zinc-300 pl-12 pt-6 text-xs font-semibold">
+                  <ul className="w-[65%] flex flex-col gap-6 border-r border-zinc-300 pl-12 pt-6 text-sm font-semibold">
                     {navData[active][sectionIndex].left.map((item, idx) => {
                       const label = typeof item === "string" ? item : item.label;
                       return (
@@ -88,7 +88,7 @@ const NavbarDesktop = ({ navData }) => {
                           onMouseLeave={() => setIsHovered(null)}
                           className="relative cursor-pointer w-fit"
                         >
-                          {label}
+                          {label} 
                           {isHovered === idx && (
                             <motion.div
                               layoutId="underline"
@@ -127,7 +127,7 @@ const NavbarDesktop = ({ navData }) => {
               <ul className="flex shadow bg-white flex-col">
                 {navData[active].map((item, idx) => (
                   <li key={idx} className="hover:underline hover:bg-blue-50 p-4">
-                    <a href={item.to} className="font-serif text-gray-700" onClick={() => setActive(null)}>
+                    <a href={item.to} className="font-serif  " onClick={() => setActive(null)}>
                       {item.label}
                     </a>
                   </li>
