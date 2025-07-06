@@ -3,6 +3,7 @@ import NavAccordion from "./NavAccordion";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { IoChevronForward } from "react-icons/io5";
 import { useState, useEffect } from "react";
+import Button from "../button/Button";
 
 const NavbarMobile = ({ showMobileMenu, setShowMobileMenu, navData }) => {
   const [expandedKey, setExpandedKey] = useState(null);
@@ -121,9 +122,7 @@ const NavbarMobile = ({ showMobileMenu, setShowMobileMenu, navData }) => {
                     </li>
                   );
                 })}
-                <button className="text-white text-xs w-[150px] py-4 font-bold cursor-pointer hover:bg-zinc-700 bg-zinc-900 duration-700 my-2 transition">
-                  Reserve Now
-                </button>
+               <Button text="Reserve Now" variant="solid" />
               </ul>
             ) : (
               <NavAccordion

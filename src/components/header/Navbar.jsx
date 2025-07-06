@@ -5,6 +5,7 @@ import { FaEarthAmericas, FaRegUser } from "react-icons/fa6";
 import { navData } from "./data";
 import NavbarDesktop from "./NavbarDesktop";
 import NavbarMobile from "./NavbarMobile";
+import Button from "../button/Button";
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -40,9 +41,8 @@ const Navbar = () => {
               <FaEarthAmericas />
               <span className="max-lg:hidden">English</span>
             </div>
-            <button className="hidden cursor-pointer lg:block border border-zinc-900 xl:w-[170px] w-[150px] py-4 text-xs font-bold hover:bg-zinc-900 hover:text-white transition duration-700">
-              Sign in or Join
-            </button>
+           <Button text="Sign in or Join" variant="outline" />
+
             <button className="lg:hidden py-2 cursor-pointer">
               <FaRegUser />
             </button>

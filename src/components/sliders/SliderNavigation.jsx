@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 
 const SliderNavigation = ({ current, total, progress, onPrev, onNext }) => {
@@ -13,11 +13,11 @@ const SliderNavigation = ({ current, total, progress, onPrev, onNext }) => {
           <span className="hidden md:inline-block">Previous</span>
         </button>
 
-        <div className="w-full mx-2 relative h-1 bg-gray-300 overflow-hidden">
-          <motion.div
-            className="h-full bg-[#8B6A29]"
+        <div className="w-full mx-2 relative h-1  bg-gray-300 overflow-hidden">
+          <div
+            className="h-full bg-[#8B6A29] transition-all duration-500 ease-linear"
             style={{ width: `${progress}%` }}
-            transition={{ ease: "linear", duration: 0.3 }}
+           
           />
         </div>
 

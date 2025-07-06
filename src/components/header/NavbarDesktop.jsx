@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IoClose, IoChevronForward } from "react-icons/io5";
+import Button from "../button/Button";
 
 const NavbarDesktop = ({ navData }) => {
   const [active, setActive] = useState(null);
@@ -63,9 +64,7 @@ const NavbarDesktop = ({ navData }) => {
         )}
       </div>
 
-      <button className=" text-white text-xs xl:w-[170px] w-[150px] py-5 font-bold hover:bg-zinc-700 bg-zinc-900 duration-700 cursor-pointer my-2 transition">
-        Reserve Now
-      </button>
+     <Button text="Reserve Now" variant="solid" />
 
       <AnimatePresence>
         {active && (
