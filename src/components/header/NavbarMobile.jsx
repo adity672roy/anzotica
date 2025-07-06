@@ -2,12 +2,28 @@ import { motion, AnimatePresence } from "framer-motion";
 import NavAccordion from "./NavAccordion";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { IoChevronForward } from "react-icons/io5";
-import { useState } from "react";
+import { useState , useEffect } from "react"; 
 
 const NavbarMobile = ({ showMobileMenu, setShowMobileMenu, navData }) => {
   const [expandedKey, setExpandedKey] = useState(null);
   const [activeMobileSection, setActiveMobileSection] = useState(null);
   const [activeMobileSubsection, setActiveMobileSubsection] = useState(0);
+
+
+
+
+useEffect(() => {
+  if (showMobileMenu) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+ 
+  return () => {
+    document.body.style.overflow = "";
+  };
+}, [showMobileMenu]);
+
 
   const toggleExpand = (key) => {
     setExpandedKey((prev) => (prev === key ? null : key));
@@ -37,7 +53,7 @@ const NavbarMobile = ({ showMobileMenu, setShowMobileMenu, navData }) => {
                         <>
                           <button
                             onClick={() => toggleExpand(key)}
-                            className="w-full  cursor-pointer flex justify-between items-center py-4  font-serif px-2 sm:text-lg"
+                            className="w-full  cursor-pointer flex justify-between items-center py-4 text-base  font-serif px-2 sm:text-lg"
                           >
                             <span>{key}</span>
                             {expandedKey === key ? <FaChevronUp size={16}  className=" text-[#927c42]" /> : <FaChevronDown size={16}  className=" text-[#927c42]" />}
@@ -48,7 +64,7 @@ const NavbarMobile = ({ showMobileMenu, setShowMobileMenu, navData }) => {
                                 items.map((subItem, subIdx) => (
                                   <button
                                     key={subIdx}
-                                    className="w-full flex justify-between items-center py-3 px-2 sm:text-base  font-medium cursor-pointer"
+                                    className="w-full flex justify-between items-center py-3 px-2 text-base  font-medium cursor-pointer"
                                     onClick={() => {
                                       setActiveMobileSection(key);
                                       setActiveMobileSubsection(subIdx);
@@ -59,7 +75,7 @@ const NavbarMobile = ({ showMobileMenu, setShowMobileMenu, navData }) => {
                                   </button>
                                 ))
                               ) : (
-                                <ul className=" sm:text-base w-full font-medium  px-2 py-1">
+                                <ul className=" text-base w-full font-medium  px-2 py-1">
                                   {items.map((item, i) => (
                                     <a href={item.to} key={i} className="block py-2" onClick={() => setShowMobileMenu(false)}>
                                       {item.label} 
@@ -71,7 +87,7 @@ const NavbarMobile = ({ showMobileMenu, setShowMobileMenu, navData }) => {
                           )}
                         </>
                       ) : isSimpleLink ? (
-                        <a href={items[0].to} onClick={() => setShowMobileMenu(false)} className="block py-4 px-2 sm:text-lg text-sm  font-serif">
+                        <a href={items[0].to} onClick={() => setShowMobileMenu(false)} className="block py-4 px-2 sm:text-lg text-base  font-serif">
                           {key}
                         </a>
                       ) : null}

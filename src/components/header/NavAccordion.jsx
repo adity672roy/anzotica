@@ -23,7 +23,7 @@ const NavAccordion = ({
           setActiveMobileSection(null);
         }}
       >
-        <IoChevronBack size={16} />  
+        <IoChevronBack size={20} />  
       </button>
 
      

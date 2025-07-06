@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IoClose, IoChevronForward } from "react-icons/io5";
 
@@ -7,6 +7,23 @@ const NavbarDesktop = ({ navData }) => {
   const [sectionIndex, setSectionIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(null);
   const dropdownRef = useRef();
+
+  
+useEffect(() => {
+  const handleClickOutside = (e) => {
+    if (!dropdownRef.current?.contains(e.target)) {
+      setActive(null);
+    }
+  };
+
+  if (active) {
+    document.addEventListener("mousedown", handleClickOutside);
+  }
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, [active]);
 
   const isMega = (key) =>
     Array.isArray(navData[key]) && navData[key][0]?.left && navData[key][0]?.right;
@@ -33,9 +50,9 @@ const NavbarDesktop = ({ navData }) => {
                 setActive(active === key ? null : key);
                 setSectionIndex(0);
               }}
-              className={`text-zinc-900 h-full text-sm uppercase py-3 hover:text-black hover:border-b-4 hover:border-black ${active === key ? "border-b-4 border-black" : ""}`}
+              className={`text-zinc-900 cursor-pointer h-full text-sm uppercase py-3 hover:text-black hover:border-b-4 hover:border-black ${active === key ? "border-b-4 border-black" : ""}`}
             >
-              {key}
+              {key} 
             </button>
           )
         )}
@@ -55,8 +72,8 @@ const NavbarDesktop = ({ navData }) => {
             ref={dropdownRef}
             className="absolute  top-full left-0 right-0 z-10 mx-auto max-w-6xl"
           >
-            <div className="absolute top-2 right-2">
-              <button onClick={() => setActive(null)}>
+            <div className="absolute  top-2 right-2">
+              <button onClick={() => setActive(null)} className="cursor-pointer">
                 <IoClose size={20} />
               </button>
             </div>
@@ -68,7 +85,7 @@ const NavbarDesktop = ({ navData }) => {
                     <button
                       key={idx}
                       onClick={() => setSectionIndex(idx)}
-                      className={`text-left text-lg  flex justify-between items-center p-4 pl-6 font-serif font-medium ${
+                      className={`text-left text-lg cursor-pointer  flex justify-between items-center p-4 pl-6 font-serif font-medium ${
                         idx === sectionIndex && "text-zinc-800 bg-[#e0e3ec]"
                       }`}
                     >
@@ -110,14 +127,14 @@ const NavbarDesktop = ({ navData }) => {
                       className="w-full max-w-2xs"
                     />
                     <div>
-                      <h3 className="text-xs tracking-wide font-sans uppercase">
+                      <h3 className="text-xs tracking-widest font-sans uppercase">
                         {navData[active][sectionIndex].right.title}
                       </h3>
                       <p className="mt-2 font-serif text-zinc-800">
                         {navData[active][sectionIndex].right.text}
                       </p>
                     </div>
-                    <button className="text-sm cursor-pointer font-semibold pb-1 border-b-2 border-black">
+                    <button className="  cursor-pointer font-semibold pb-1 border-b-2 border-black">
                       {navData[active][sectionIndex].right.button}
                     </button>
                   </div>

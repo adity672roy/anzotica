@@ -37,7 +37,7 @@ const slides = [
 const Carousel = () => {
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [paused, setPaused] = useState(true);
+  const [paused, setPaused] = useState(false);
   const timeoutRef = useRef(null);
 
   const thumbContainerRef = useRef(null);
@@ -122,8 +122,7 @@ const Carousel = () => {
           <motion.div
             className="absolute top-1/2 left-4  z-20 text-white text-left   -translate-y-1/2 px-4"
             initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            exit={{ y: -20 }}
+            animate={{ y: 0 }} 
             transition={{ duration: 0.6 }}
           >
             <p className="uppercase text-sm tracking-widest text-gray-300 mb-2">
