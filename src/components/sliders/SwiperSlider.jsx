@@ -1,3 +1,12 @@
+import { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import Heading from "../heading/Heading";
+import SliderNavigation from "./SliderNavigation";
+
 const hotels = [
   {
     number: "01",
@@ -47,22 +56,12 @@ const hotels = [
     description:
       "Clifftop retreat featuring oceanfront villas and Balinese cultural experiences.",
   },
-  
 ];
 
-import { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation"; 
-import { motion, AnimatePresence } from "framer-motion";
-import Heading from "../heading/Heading";
-import SliderNavigation from "./SliderNavigation";
-
 const SwiperSlider = () => {
-  const swiperRef = useRef(null); 
+  const swiperRef = useRef(null);
 
-  const [activeIndex, setActiveIndex] = useState(0); 
+  const [activeIndex, setActiveIndex] = useState(0);
   const totalSlides = hotels.length;
   const progressPercent = ((activeIndex + 1) / totalSlides) * 100;
 
@@ -74,8 +73,8 @@ const SwiperSlider = () => {
         description={
           "Boundary-pushing architecture, innovative amenities, intriguing destinations — all with legendary Ritz-Carlton service and attention to detail. Discover the newest hotels and resorts from The Ritz-Carlton and open up a world of possibility."
         }
-        borderColor = "black"
-  bgColor = "black"
+        borderColor="black"
+        bgColor="black"
         buttonText={"See What’s New"}
       />
 
@@ -180,10 +179,10 @@ const SwiperSlider = () => {
           current={activeIndex + 1}
           total={totalSlides}
           progress={progressPercent}
-          onPrev={() => { 
+          onPrev={() => {
             swiperRef.current?.slidePrev();
           }}
-          onNext={() => { 
+          onNext={() => {
             swiperRef.current?.slideNext();
           }}
         />

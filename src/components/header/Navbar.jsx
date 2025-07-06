@@ -18,10 +18,8 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Header */}
       <header className="max-lg:sticky max-lg:top-0 max-lg:shadow bg-white px-4 sm:px-6 z-[999]">
         <div className="max-w-6xl mx-auto border-b border-gray-50/5 py-3 flex justify-between items-center">
-          {/* Left */}
           <div className="flex items-center sm:gap-4 gap-2">
             <button
               onClick={() => setShowMobileMenu(!showMobileMenu)}
@@ -37,7 +35,6 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Right */}
           <div className="flex items-center gap-4 md:gap-6  font-medium text-gray-800">
             <div className="flex items-center space-x-1 hover:text-black cursor-pointer">
               <FaEarthAmericas />

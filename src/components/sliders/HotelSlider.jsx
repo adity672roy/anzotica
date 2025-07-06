@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Heading from "../heading/Heading"; 
+import Heading from "../heading/Heading";
 import SliderNavigation from "./SliderNavigation";
 
 const hotels = [
@@ -62,15 +62,15 @@ const HotelSlider = () => {
     const updatePerPage = () => {
       const width = window.innerWidth;
       if (width < 640) {
-        setPerPage(2);  
+        setPerPage(2);
       } else if (width < 768) {
-        setPerPage(3);  
+        setPerPage(3);
       } else {
-        setPerPage(4);  
+        setPerPage(4);
       }
     };
 
-    updatePerPage();  
+    updatePerPage();
     window.addEventListener("resize", updatePerPage);
     return () => window.removeEventListener("resize", updatePerPage);
   }, []);
@@ -139,19 +139,14 @@ const HotelSlider = () => {
             ))}
           </motion.div>
         </AnimatePresence>
- 
 
-
-<SliderNavigation
-  current={startIndex + 1}
-  total={hotels.length}
-  progress={progress}
-  onPrev={prev}
-  onNext={next}
-/>
-
-
-
+        <SliderNavigation
+          current={startIndex + 1}
+          total={hotels.length}
+          progress={progress}
+          onPrev={prev}
+          onNext={next}
+        />
       </div>
     </section>
   );

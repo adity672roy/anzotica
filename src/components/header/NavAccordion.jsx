@@ -1,5 +1,5 @@
-  
 import { IoChevronBack } from "react-icons/io5";
+
 const NavAccordion = ({
   navData,
   activeMobileSection,
@@ -13,23 +13,20 @@ const NavAccordion = ({
 
   return (
     <div className="w-full ">
-     
       <div className="flex gap-2 px-2  bg-zinc-200 py-6 w-full items-center justify-between mb-4">
+        <button
+          className=" text-[#927c42] flex cursor-pointer items-center justify-center gap-2 font-semibold  text-sm p-2"
+          onClick={() => {
+            setActiveMobileSubsection(null);
+            setActiveMobileSection(null);
+          }}
+        >
+          <IoChevronBack size={20} />
+        </button>
 
-      <button
-        className=" text-[#927c42] flex cursor-pointer items-center justify-center gap-2 font-semibold  text-sm p-2"
-        onClick={() => {
-          setActiveMobileSubsection(null);
-          setActiveMobileSection(null);
-        }}
-      >
-        <IoChevronBack size={20} />  
-      </button>
-
-     
-      <h2 className="sm:text-lg text-sm text-center w-full font-medium uppercase tracking-wide   ">
-        {section.title}
-      </h2>
+        <h2 className="sm:text-lg text-sm text-center w-full font-medium uppercase tracking-wide   ">
+          {section.title}
+        </h2>
       </div>
 
       <div className=" px-4 flex flex-col gap-6">
@@ -55,7 +52,10 @@ const NavAccordion = ({
           <p className="text-zinc-700 max-w-sm font-serif mt-2 mb-4">
             {section.right.text}
           </p>
-          <a href="#" className="inline-block border-b-2 border-black font-medium">
+          <a
+            href="#"
+            className="inline-block border-b-2 border-black font-medium"
+          >
             {section.right.button}
           </a>
         </div>
@@ -64,4 +64,4 @@ const NavAccordion = ({
   );
 };
 
-export default  NavAccordion
+export default NavAccordion;

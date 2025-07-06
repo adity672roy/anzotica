@@ -8,25 +8,26 @@ const NavbarDesktop = ({ navData }) => {
   const [isHovered, setIsHovered] = useState(null);
   const dropdownRef = useRef();
 
-  
-useEffect(() => {
-  const handleClickOutside = (e) => {
-    if (!dropdownRef.current?.contains(e.target)) {
-      setActive(null);
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!dropdownRef.current?.contains(e.target)) {
+        setActive(null);
+      }
+    };
+
+    if (active) {
+      document.addEventListener("mousedown", handleClickOutside);
     }
-  };
 
-  if (active) {
-    document.addEventListener("mousedown", handleClickOutside);
-  }
-
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, [active]);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [active]);
 
   const isMega = (key) =>
-    Array.isArray(navData[key]) && navData[key][0]?.left && navData[key][0]?.right;
+    Array.isArray(navData[key]) &&
+    navData[key][0]?.left &&
+    navData[key][0]?.right;
 
   const isSimpleLink = (data) =>
     data.length === 1 && !data[0].left && !data[0].title;
@@ -39,7 +40,9 @@ useEffect(() => {
             <a
               key={key}
               href={data[0].to}
-              className={`text-zinc-900  h-full flex items-center text-sm uppercase py-3 hover:text-black hover:border-b-4 hover:border-black ${active === key ? "border-b-4 border-black" : ""}`}
+              className={`text-zinc-900  h-full flex items-center text-sm uppercase py-3 hover:text-black hover:border-b-4 hover:border-black ${
+                active === key ? "border-b-4 border-black" : ""
+              }`}
             >
               {key}
             </a>
@@ -50,9 +53,11 @@ useEffect(() => {
                 setActive(active === key ? null : key);
                 setSectionIndex(0);
               }}
-              className={`text-zinc-900 cursor-pointer h-full text-sm uppercase py-3 hover:text-black hover:border-b-4 hover:border-black ${active === key ? "border-b-4 border-black" : ""}`}
+              className={`text-zinc-900 cursor-pointer h-full text-sm uppercase py-3 hover:text-black hover:border-b-4 hover:border-black ${
+                active === key ? "border-b-4 border-black" : ""
+              }`}
             >
-              {key} 
+              {key}
             </button>
           )
         )}
@@ -73,7 +78,10 @@ useEffect(() => {
             className="absolute  top-full left-0 right-0 z-10 mx-auto max-w-6xl"
           >
             <div className="absolute  top-2 right-2">
-              <button onClick={() => setActive(null)} className="cursor-pointer">
+              <button
+                onClick={() => setActive(null)}
+                className="cursor-pointer"
+              >
                 <IoClose size={20} />
               </button>
             </div>
@@ -89,15 +97,18 @@ useEffect(() => {
                         idx === sectionIndex && "text-zinc-800 bg-[#e0e3ec]"
                       }`}
                     >
-                      {item.title} 
-                      {idx === sectionIndex && <IoChevronForward color="#926f29" size={20} />}
+                      {item.title}
+                      {idx === sectionIndex && (
+                        <IoChevronForward color="#926f29" size={20} />
+                      )}
                     </button>
                   ))}
                 </div>
                 <div className="flex flex-col md:flex-row h-full gap-6 md:w-2/3 p-6">
                   <ul className="w-[65%] flex flex-col gap-6 border-r border-zinc-300 pl-12 pt-6 text-sm font-semibold">
                     {navData[active][sectionIndex].left.map((item, idx) => {
-                      const label = typeof item === "string" ? item : item.label;
+                      const label =
+                        typeof item === "string" ? item : item.label;
                       return (
                         <li
                           key={idx}
@@ -105,7 +116,7 @@ useEffect(() => {
                           onMouseLeave={() => setIsHovered(null)}
                           className="relative cursor-pointer w-fit"
                         >
-                          {label} 
+                          {label}
                           {isHovered === idx && (
                             <motion.div
                               layoutId="underline"
@@ -143,8 +154,15 @@ useEffect(() => {
             ) : (
               <ul className="flex shadow bg-white flex-col">
                 {navData[active].map((item, idx) => (
-                  <li key={idx} className="hover:underline py-4 text-lg hover:bg-blue-50 p-4">
-                    <a href={item.to} className="font-serif  " onClick={() => setActive(null)}>
+                  <li
+                    key={idx}
+                    className="hover:underline py-4 text-lg hover:bg-blue-50 p-4"
+                  >
+                    <a
+                      href={item.to}
+                      className="font-serif  "
+                      onClick={() => setActive(null)}
+                    >
                       {item.label}
                     </a>
                   </li>

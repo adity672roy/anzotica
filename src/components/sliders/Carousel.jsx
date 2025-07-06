@@ -1,15 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  IoChevronBack,
-  IoChevronForward,
-   
-} from "react-icons/io5";
-import {  BsPause,
-  BsPlay ,} from "react-icons/bs";
-  
+import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import { BsPause, BsPlay } from "react-icons/bs";
+
 const slides = [
-  
   {
     title: "The Azure Shores Resort",
     subtitle: "Luxury Suites with Private Beach Access",
@@ -21,7 +15,7 @@ const slides = [
     img: "https://cache.marriott.com/is/image/marriotts7prod/mlera-ocean-villa-3558:Feature-Hor?wid=1920&fit=constrain",
   },
 
-   {
+  {
     title: "Vista Verde Retreat",
     subtitle: "Panoramic Balconies Overlooking Nature",
     img: "https://www.maldives.com/_next/image?url=%2Fuploads%2Flarge_The_Ritz_Carlton_Maldives_b7a2d90607.jpg&w=3840&q=90",
@@ -32,7 +26,6 @@ const slides = [
     img: "https://www.meinemalediven.de/images/hotel-galleries/761/761-11.webp",
   },
 ];
-
 
 const Carousel = () => {
   const [active, setActive] = useState(0);
@@ -122,7 +115,7 @@ const Carousel = () => {
           <motion.div
             className="absolute top-1/2 left-4  z-20 text-white text-left   -translate-y-1/2 px-4"
             initial={{ y: 20 }}
-            animate={{ y: 0 }} 
+            animate={{ y: 0 }}
             transition={{ duration: 0.6 }}
           >
             <p className="uppercase text-sm tracking-widest text-gray-300 mb-2">
@@ -135,7 +128,7 @@ const Carousel = () => {
               {slides[active].subtitle}
             </p>
             <button className="cursor-pointer font-bold text-xl border-b-2 border-white  uppercase py-2 px-6   tracking-widest  mt-4">
-             EXPLORE MORE
+              EXPLORE MORE
             </button>
           </motion.div>
         </motion.div>
@@ -172,7 +165,6 @@ const Carousel = () => {
 
       <div className="absolute bottom-4 right-4 left-1/2 md:left-auto md:right-4 -translate-x-1/2 md:translate-x-0 z-30   backdrop-blur-md py-1 px-4   w-fit">
         <div className="flex items-center justify-between gap-2 max-w-[300px]">
-          
           <button
             onClick={() => paginate(-1)}
             className="p-2 rounded-full  cursor-pointer border border-white hover:bg-white/30   transition"
@@ -184,12 +176,12 @@ const Carousel = () => {
             className="p-2 rounded-full cursor-pointer   border border-white hover:bg-white/30   transition"
           >
             {paused ? (
-              <BsPlay  className="text-white w-4 h-4" />
+              <BsPlay className="text-white w-4 h-4" />
             ) : (
               <BsPause className="text-white w-4 h-4" />
             )}
           </button>
- 
+
           <button
             onClick={() => paginate(1)}
             className="p-2 rounded-full cursor-pointer  border border-white hover:bg-white/30   transition"
@@ -197,14 +189,13 @@ const Carousel = () => {
             <IoChevronForward className="text-white w-4 h-4" />
           </button>
 
-            <div className="h-1 w-28 bg-white/20 overflow-hidden  ">
+          <div className="h-1 w-28 bg-white/20 overflow-hidden  ">
             <div
               className="h-full bg-white transition-all duration-500 ease-linear"
               style={{ width: `${((active + 1) / slides.length) * 100}%` }}
             />
           </div>
 
-          
           <span className="text-white text-sm font-medium min-w-fit text-right">
             {active + 1}
           </span>
