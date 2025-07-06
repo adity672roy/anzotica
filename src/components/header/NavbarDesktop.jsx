@@ -73,7 +73,7 @@ const NavbarDesktop = ({ navData }) => {
                       }`}
                     >
                       {item.title} 
-                      {idx === sectionIndex && <IoChevronForward color="#926f29" size={16} />}
+                      {idx === sectionIndex && <IoChevronForward color="#926f29" size={20} />}
                     </button>
                   ))}
                 </div>
